@@ -9,6 +9,7 @@ def get_abstract(paper):
         return abstract
 
 def create_df_full_abstract(papers):
+    pmid_list = []
     title_list= []
     abstract_list=[]
     journal_list = []
@@ -49,9 +50,14 @@ def create_df_full_abstract(papers):
             pubdate_month_list.append(paper['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate']['Month'])
         except:
             pubdate_month_list.append('No Data')
+        
+        try:
+            pmid_list.append(str(paper['MedlineCitation']['PMID']))
+        except:
+            pmid_list.append('No Data')
             
-    df = pd.DataFrame(list(zip(title_list, abstract_list, journal_list, language_list, pubdate_year_list, pubdate_month_list)),
-        columns=['Title', 'Abstract', 'Journal', 'Language', 'Year','Month'])
+    df = pd.DataFrame(list(zip(pmid_list, title_list, abstract_list, journal_list, language_list, pubdate_year_list, pubdate_month_list)),
+        columns=['PMID', 'Title', 'Abstract', 'Journal', 'Language', 'Year','Month'])
     
     return df
 

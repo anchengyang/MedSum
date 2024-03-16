@@ -85,12 +85,28 @@ class OpenAIClient:
     def print_result(self, query, system_template):
         qa = self.qa_func(system_template)
         result = qa(query)
+
+        reference_links = []
+        pmids = []
+        for doc in result["source_documents"]:
+            pmid = doc.metadata["PMID"]
+            if pmid not in pmids:
+                pmids.append(pmid)
+                link = f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
+                reference_links.append(link)
+
+        formatted_reference_links = "\n- ".join(reference_links)
+
         output_text = f"""
         ### Question: 
         {result["query"]}
 
         ### Response: 
         {result["result"]}
+
+        ### Reference Links:
+        {formatted_reference_links}
         """
+
         print(Markdown(output_text).data)
         return result

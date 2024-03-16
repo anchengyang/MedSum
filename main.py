@@ -2,7 +2,7 @@ import os
 from Classes.MetaDataCSVLoader import MetaDataCSVLoader
 from Classes.OpenAIClient import OpenAIClient
 from Classes.PubMedClient import PubMedClient
-from utils.constants import keywords, study_designs, system_template
+from utils.constants import keywords, study_designs, system_template, metadata_columns
 from utils.utils import create_df_fill_full_abstract, extract_keywords_from_results
 
 def main():
@@ -24,7 +24,7 @@ def main():
     extract_abstract.to_csv('data/pubmed.csv', index=False)
 
     # load the data
-    loader = MetaDataCSVLoader(file_path="data/pubmed.csv", metadata_columns=['label', 'Outcomes_from_results', 'Study_design'], encoding="utf-8")
+    loader = MetaDataCSVLoader(file_path="data/pubmed.csv", metadata_columns=metadata_columns, encoding="utf-8")
     bg_data = loader.load()
 
     openai = OpenAIClient(bg_data)

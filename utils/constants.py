@@ -5,6 +5,7 @@ study_designs = ["systematic review", "meta-analysis", "multicenter", "multicent
 document_content_description = "A database of scientific articles related to enhanced recovery after surgery (ERAS) and every article has 'Outcomes_from_results' which represent the benefits of ERAS"
 system_template = """The provided {context} is a tabular dataset containing scientific articles that are related to enhanced recovery after surgery (ERAS) in hip and knee surgery
 The dataset includes the following columns:
+'PMID': the PubMed ID of the published article,
 'Title': the title of the published article,
 'Abstract': an abstract of the published article,
 "Journal": the journal where the article is published, 
@@ -21,3 +22,5 @@ The dataset includes the following columns:
 If there is actual numbers and percentages, state it. \
 For the numbers and percentages, provide a reference list stating the title and the year of publication.
 """
+
+metadata_columns = ['PMID', 'label', 'Outcomes_from_results', 'Study_design']
