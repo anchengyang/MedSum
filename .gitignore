@@ -1,0 +1,6 @@
+.env
+chroma/
+data/
+myenv/
+test.py
+driver
