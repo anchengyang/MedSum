@@ -37,6 +37,8 @@ def main():
 
     openai.print_result(query_los, system_template)
 
+    openai
+
 
 if __name__ == '__main__':
     main()
