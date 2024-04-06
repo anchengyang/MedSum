@@ -21,6 +21,10 @@ Activate the virtual environment by running this command in the terminal
 ```
 myEnvName/Scripts/Activate.ps1
 ```
+Or if you are on Mac, use
+```
+source myEnvName/bin/activate
+```
 
 ### Step 4:
 Run this command in your terminal to install the required dependecies
