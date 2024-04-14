@@ -16,6 +16,10 @@ class PubMedClient:
 
 
     def search(self, query, max_results=10000):
+        '''
+        Runs an Entrez Search to return the IDs of papers in an XML
+        Reads the XML file and returns a dictionary
+        '''
         Entrez.email = self.email
         handle = Entrez.esearch(
             db='pubmed',
@@ -28,6 +32,11 @@ class PubMedClient:
         return results
 
     def fetch_details(self, id_list):
+        '''
+        Takes in a list of paper IDs and returns a dictionary
+        Dictionary contains paper details as specified in 
+        https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.EFetch
+        '''
         ids = ','.join(id_list)
         Entrez.email = self.email
         handle = Entrez.efetch(

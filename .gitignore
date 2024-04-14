@@ -3,8 +3,11 @@ chroma/
 data/
 myenv/
 test.py
+testmc.py
 driver
 venv/
+myEnvName/
+
 # Byte-compiled / optimized / DLL files
-__pycache__/
+**/__pycache__/
 *.pyc

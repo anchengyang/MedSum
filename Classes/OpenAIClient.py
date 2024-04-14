@@ -26,11 +26,17 @@ class OpenAIClient:
         self.db = None
 
     def split(self):
+        '''
+        Splits document data into Langchain Chunks, returning a chunked document
+        '''
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=0)
         chunks = text_splitter.split_documents(self.bg_data)
         return chunks
 
     def load_db(self):
+        '''
+        Loads/Creates Chroma DB
+        '''
         # only run this once
         if self.db is None:
             print("Loading DB")
@@ -48,6 +54,9 @@ class OpenAIClient:
         return self.db
     
     def get_retriever(self, document_content_description):
+        '''
+        Returns a retriever based on a content description and metadata field info
+        '''
         metadata_field_info=[
             AttributeInfo(
                 name="label",
@@ -71,6 +80,11 @@ class OpenAIClient:
         return retriever
     
     def qa_func(self, system_template):
+        '''
+        Sets a prompt with human + system template.
+        Returns a RetrievalQA Object:
+        - Retriever retrieves relevant documents from the vector DB
+        '''
         messages = [
             SystemMessagePromptTemplate.from_template(system_template),
             HumanMessagePromptTemplate.from_template("{question}")
@@ -83,6 +97,10 @@ class OpenAIClient:
         return qa
     
     def print_result(self, query, system_template):
+        '''
+        gets RetrievalQA object and calls it with a query.
+        Returns the query, results, and reference links/
+        '''
         qa = self.qa_func(system_template)
         result = qa(query)
 
