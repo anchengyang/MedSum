@@ -7,7 +7,7 @@ testmc.py
 driver
 venv/
 myEnvName/
-
+hidden_testing/
 # Byte-compiled / optimized / DLL files
 **/__pycache__/
 *.pyc
